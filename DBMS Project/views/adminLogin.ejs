@@ -1,0 +1,48 @@
+<%- include('./partials/header.ejs') %>
+
+<!-- <form action="/admin/login" method="POST">
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="email" id="form3Example3" class="form-control form-control-lg"
+          placeholder="Enter a valid email" name="email"/>
+        <label class="form-label" for="form3Example3">Email</label>
+      </div>
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="password" id="form3Example3" class="form-control form-control-lg"
+          placeholder="Enter a valid password" name="password"/>
+        <label class="form-label" for="form3Example3">Password</label>
+      </div>
+      <div class="text-center text-lg-start mt-4 pt-2">
+        <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
+          style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+      </div>
+</form> -->
+
+
+<div class="login-card">
+  <h3 class="login-title">Admin Login</h3>
+
+  <form action="/admin/login" method="POST">
+    <div class="form-outline">
+      <i class="fas fa-envelope"></i>
+      <input type="email" class="form-control" name="email" placeholder="Email" required>
+    </div>
+
+    <div class="form-outline">
+      <i class="fas fa-lock"></i>
+      <input type="password" class="form-control" name="password" placeholder="Password" required>
+    </div>
+
+    <div class="extra-options">
+      <label><input type="checkbox" name="remember"> Remember Me</label>
+      <a href="#">Forgot Password?</a>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4">Login</button>
+  </form>
+</div>
+
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" crossorigin="anonymous"></script>
+
+
+<%- include('./partials/footer.ejs') %>

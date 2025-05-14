@@ -1,0 +1,114 @@
+<%- include('./partials/header.ejs') %>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Books Management</h2>
+    <a href="/book/add" class="btn btn-primary">
+      <i class="bi bi-plus"></i> Add New Book
+    </a>
+  </div>
+
+  <form method="GET" action="/manage/books" class="row g-3 mb-4">
+    <div class="col-md-4">
+      <input type="text" name="search" class="form-control" placeholder="Search by title, author, or ISBN" value="<%= search || '' %>">
+    </div>
+    <div class="col-md-3">
+      <select name="category" class="form-select">
+        <option value="">All Categories</option>
+        <% categories.forEach(cat => { %>
+          <option value="<%= cat %>" <%= category === cat ? 'selected' : '' %>><%= cat %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select name="status" class="form-select">
+        <option value="">All Statuses</option>
+        <option value="Available" <%= status === 'Available' ? 'selected' : '' %>>Available</option>
+        <option value="On Loan" <%= status === 'On Loan' ? 'selected' : '' %>>On Loan</option>
+        <option value="Reserved" <%= status === 'Reserved' ? 'selected' : '' %>>Reserved</option>
+      </select>
+    </div>
+    <div class="col-md-2 d-grid">
+      <button type="submit" class="btn btn-outline-secondary">
+        <i class="bi bi-search"></i> Search
+      </button>
+    </div>
+  </form>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th><a href="?<%= buildQuery({ sort: 'id', order: sort === 'id' && order === 'asc' ? 'desc' : 'asc' }) %>">ID <%= sort === 'id' ? (order === 'asc' ? '↑' : '↓') : '' %></a></th>
+          <th><a href="?<%= buildQuery({ sort: 'title', order: sort === 'title' && order === 'asc' ? 'desc' : 'asc' }) %>">Title <%= sort === 'title' ? (order === 'asc' ? '↑' : '↓') : '' %></a></th>
+          <th><a href="?<%= buildQuery({ sort: 'author', order: sort === 'author' && order === 'asc' ? 'desc' : 'asc' }) %>">Author <%= sort === 'author' ? (order === 'asc' ? '↑' : '↓') : '' %></a></th>
+          <th><a href="?<%= buildQuery({ sort: 'category', order: sort === 'category' && order === 'asc' ? 'desc' : 'asc' }) %>">Category <%= sort === 'category' ? (order === 'asc' ? '↑' : '↓') : '' %></a></th>
+          <th><a href="?<%= buildQuery({ sort: 'isbn', order: sort === 'isbn' && order === 'asc' ? 'desc' : 'asc' }) %>">ISBN <%= sort === 'isbn' ? (order === 'asc' ? '↑' : '↓') : '' %></a></th>
+          <th><a href="?<%= buildQuery({ sort: 'status', order: sort === 'status' && order === 'asc' ? 'desc' : 'asc' }) %>">Status <%= sort === 'status' ? (order === 'asc' ? '↑' : '↓') : '' %></a></th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% books.forEach(book => { %>
+          <tr>
+            <td><%= book.id %></td>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td><%= book.category %></td>
+            <td><%= book.isbn %></td>
+            <td>
+              <% if (book.status === 'Available') { %>
+                <span class="badge bg-success">Available</span>
+              <% } else if (book.status === 'On Loan') { %>
+                <span class="badge bg-warning text-dark">On Loan</span>
+              <% } else if (book.status === 'Reserved') { %>
+                <span class="badge bg-danger">Reserved</span>
+              <% } %>
+            </td>
+            <td>
+              <div class="btn-group btn-group-sm">
+                <a href="/book/edit/<%= book.id %>" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                <form method="POST" action="/book/delete/<%= book.id %>" onsubmit="return confirm('Are you sure you want to delete this book?')">
+                  <button type="submit" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <% if (currentPage > 1) { %>
+        <li class="page-item">
+          <a class="page-link" href="?<%= buildQuery({ page: currentPage - 1 }) %>">Previous</a>
+        </li>
+      <% } else { %>
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+      <% } %>
+
+      <% for (let i = 1; i <= totalPages; i++) { %>
+        <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+          <a class="page-link" href="?<%= buildQuery({ page: i }) %>"><%= i %></a>
+        </li>
+      <% } %>
+
+      <% if (currentPage < totalPages) { %>
+        <li class="page-item">
+          <a class="page-link" href="?<%= buildQuery({ page: currentPage + 1 }) %>">Next</a>
+        </li>
+      <% } else { %>
+        <li class="page-item disabled">
+          <span class="page-link">Next</span>
+        </li>
+      <% } %>
+    </ul>
+  </nav>
+</div>
+
+<%- include('./partials/footer.ejs') %>

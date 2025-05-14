@@ -1,0 +1,66 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+     <!-- <h1 class="h">Hello Bro</h1> -->
+    <!-- <h1</h1> --> 
+    <!-- <a href="/login"><button>Login</button></a> -->
+    <style>
+      a{
+       text-decoration: none; 
+      }
+    </style>
+            <section>
+              <h2>Welcome to the Library</h2>
+              <p>Manage books, members, and records with ease and efficiency.</p>
+            
+              <div class="features">
+                <ul>
+                  <li><a href="/bookI">📖 Book Inventory Management</a></li>
+                  <li><a href="/manag">👥 Member Tracking</a></li>
+                  <li><a href="/issue">📆 Issue & Return System</a></li>
+                </ul>
+              </div>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi debitis, quia ea vel eveniet, ullam deleniti natus quae necessitatibus tempora hic incidunt vitae suscipit perspiciatis culpa fuga. Debitis, perferendis perspiciatis!</p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt atque rerum sapiente error ratione quas neque deleniti, facilis consequuntur eos laborum minus ullam eius, animi voluptate quibusdam delectus. Commodi, consectetur!</p>
+            </section>
+            
+ 
+            <!-- Chatbot Card (Always Visible) -->
+<div style="position: fixed; bottom: 20px; right: 20px; width: 320px; background: #f8f9fa; border: 1px solid #ccc; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000;">
+  <h4 style="margin-top: 0;">Library ChatBot</h4>
+  <form action="/chatbot" method="POST">
+    <input
+      type="text"
+      name="message"
+      placeholder="Ask something..."
+      required
+      style="width: 100%; padding: 8px; margin-bottom: 10px;"
+    />
+    <button type="submit" style="width: 100%; padding: 8px;">Send</button>
+  </form>
+
+  <% if (typeof result !== 'undefined' && result) { %>
+    <div style="margin-top: 10px; background: #e9ecef; padding: 10px; border-radius: 5px;">
+      <strong>Bot:</strong> <%= result %>
+    </div>
+  <% } %>
+</div>
+
+
+
+
+
+     <!-- <form action="/register" method="get">
+        <button type="submit">Sub</button>
+     </form> -->
+<%- include('./partials/footer.ejs') %>
+</body>
+</html> 
+

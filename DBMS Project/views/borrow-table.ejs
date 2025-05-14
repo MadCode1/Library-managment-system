@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Records</title>
+    <!-- <link rel="stylesheet" href="/styles.css"> Link to external CSS file -->
+   
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+    
+    <div class="container">
+        <h1>Borrowed Books</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Borrow ID</th>
+                    <th>User ID</th>
+                    <th>Book ID</th>
+                    <th>Borrow Date</th>
+                    <th>Due Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% borrowRecords.forEach(function(record) { %>
+                    <tr>
+                        <td><%= record.borrow_id %></td>
+                        <td><%= record.user_id %></td>
+                        <td><%= record.book_id %></td>
+                        <td><%= record.borrow_date %></td>
+                        <td><%= record.due_date %></td>
+                        <td><%= record.return_date || 'Not Returned' %></td>
+                        <td class="status <%= record.status === 'Returned' ? 'active' : 'inactive' %>">
+                            <%= record.status %>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+<%- include('./partials/footer.ejs') %>
+</body>
+</html>

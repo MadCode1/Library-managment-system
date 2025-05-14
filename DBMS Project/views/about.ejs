@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About - Library Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/styles/sample.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <%- include('./partials/header.ejs') %>
+
+  <div class="container mt-5">
+    <div class="text-center mb-4">
+      <h1 class="fw-bold">📖 About Our Library Management System</h1>
+      <p class="text-muted">Discover how we simplify book borrowing and showcase collections beautifully.</p>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4">
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Library" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-6">
+        <h3>What is this Project?</h3>
+        <p>
+          Our Library Management System is a modern web application designed to streamline how books are showcased and borrowed in a digital library. With features like animated book cards, real-time search, and smooth flip-card interactions, it provides both functionality and a great user experience.
+        </p>
+
+        <h4>🔍 Features</h4>
+        <ul>
+          <li>Interactive book showcase with hover animations and card flipping</li>
+          <li>Borrowing form embedded within the book card for easy access</li>
+          <li>Live search by title or author</li>
+          <li>Clean and responsive UI with Bootstrap 5</li>
+        </ul>
+
+        <h4>🛠️ Technologies Used</h4>
+        <ul>
+          <li>Node.js + Express.js (Server-side)</li>
+          <li>EJS Templates</li>
+          <li>Bootstrap 5 + Custom CSS</li>
+          <li>Open Library API for book covers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <h4>👨‍💻 Developer Notes</h4>
+      <p>
+        This project was built to learn how to integrate frontend animations with backend form handling, while managing book data efficiently. It's lightweight, fast, and focused on improving the user experience.
+      </p>
+      <p>
+        We aim to continue improving this system by adding features like login/authentication, book return tracking, and administrative controls.
+      </p>
+    </div>
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

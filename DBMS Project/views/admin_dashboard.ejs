@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- Link your CSS file -->
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .card { padding: 1rem; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9; box-shadow: 2px 2px 8px #ccc; }
+    h1 { margin-bottom: 20px; }
+    .card h2 { margin: 0; font-size: 24px; }
+    .card p { margin: 5px 0 0; color: #555; }
+  </style>
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+  <h1>📊 Admin Dashboard</h1>
+
+  <div class="card-grid">
+    <div class="card">
+      <h2><%= stats.totalBooks %></h2>
+      <p>Total Books</p>
+    </div>
+
+    <div class="card">
+      <h2><%= stats.availableCopies %></h2>
+      <p>Available Copies</p>
+    </div>
+
+    <div class="card">
+      <h2><%= stats.activeBorrows %></h2>
+      <p>Active Borrows</p>
+    </div>
+
+    <div class="card">
+      <h2><%= stats.overdueBooks %></h2>
+      <p>Overdue Books</p>
+    </div>
+
+    <div class="card">
+      <h2><%= stats.totalUsers %></h2>
+      <p>Total Users</p>
+    </div>
+
+    <div class="card">
+      <h2>₹<%= stats.totalCollected %></h2>
+      <p>Fine Collected</p>
+    </div>
+
+    <div class="card">
+      <h2>₹<%= stats.totalPending %></h2>
+      <p>Pending Fines</p>
+    </div>
+  </div>
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>
